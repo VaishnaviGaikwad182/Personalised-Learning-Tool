@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const SignUpPage = () => {
+const TeacherSignUpPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-white to-blue-300 px-4">
-      <div className="bg-gray-900 text-white p-8 rounded-2xl shadow-lg w-full max-w-3xl">
-        <h2 className="text-3xl font-bold mb-2 text-center">Student Registration</h2>
+      <div className="bg-gray-900 text-white p-8 rounded-2xl shadow-lg w-full max-w-xl">
+        <h2 className="text-3xl font-bold mb-2 text-center">Teacher Registration</h2>
         <p className="text-blue-400 text-center mb-6">Create your account</p>
 
         <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -16,17 +16,7 @@ const SignUpPage = () => {
           />
           <input
             type="text"
-            placeholder="PRN"
-            className="w-full p-3 rounded-lg bg-gray-800 placeholder-gray-500"
-          />
-          <input
-            type="text"
             placeholder="Department"
-            className="w-full p-3 rounded-lg bg-gray-800 placeholder-gray-500"
-          />
-          <input
-            type="text"
-            placeholder="Div"
             className="w-full p-3 rounded-lg bg-gray-800 placeholder-gray-500"
           />
           <input
@@ -50,7 +40,7 @@ const SignUpPage = () => {
 
         <p className="mt-4 text-center text-sm text-gray-400">
           Already have an account?{" "}
-          <Link to="/login" className="text-blue-400 hover:underline">
+          <Link to="/login?role=teacher" className="text-blue-400 hover:underline">
             Login
           </Link>
         </p>
@@ -59,4 +49,4 @@ const SignUpPage = () => {
   );
 };
 
-export default SignUpPage;
+export default TeacherSignUpPage;
