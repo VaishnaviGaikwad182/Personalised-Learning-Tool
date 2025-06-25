@@ -4,7 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const LoginPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
-
   const params = new URLSearchParams(location.search);
   const role = params.get('role') || 'Student'; // Default to student if role is missing
 
@@ -32,8 +31,10 @@ const LoginPage = () => {
         <div className="text-right mb-4">
           <a href="/forgot-password" className="text-blue-400 hover:underline text-sm">Forgot Password?</a>
         </div>
-
-        <button className="w-full bg-gradient-to-r from-blue-300 to-blue-900 py-2 rounded-lg font-semibold hover:opacity-90">
+        <button
+          onClick={() => navigate('/dashboard')}
+          className="w-full bg-gradient-to-r from-blue-300 to-blue-900 py-2 rounded-lg font-semibold hover:opacity-90"
+        >
           Login
         </button>
 
