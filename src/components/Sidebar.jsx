@@ -9,14 +9,21 @@ const Sidebar = () => {
         <div className="flex items-center space-x-2">
           <Link to="/dashboard">Dashboard</Link>
         </div>
+
         <div className="flex items-center space-x-2">
-          <Link to="/marks-upload">Marks Upload</Link>
+          <Link to="/fa-mode">FA Mode</Link>
         </div>
+
         <div className="flex items-center space-x-2">
           <Link to="/queries">Queries</Link>
         </div>
+
         <div className="flex items-center space-x-2">
-          <Link to="/fa-mode">FA Mode</Link>
+          <Link to="/submission-status">Student Submission</Link>
+        </div>
+
+        <div className="flex items-center space-x-2">
+          <Link to="/marks-upload">Marks Upload</Link>
         </div>
       </nav>
     </div>

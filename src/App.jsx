@@ -12,6 +12,8 @@ import Dashboard from './pages/Dashboard';
 import MarksUpload from './pages/MarksUpload';
 import Queries from './pages/Queries';
 import FAMode from './pages/FAMode';
+import SubmissionStatus from "./pages/SubmissionStatus";
+
 
 const AppLayout = ({ children }) => {
   const location = useLocation();
@@ -42,6 +44,7 @@ const AppRoutes = () => {
         <Route path="/marks-upload" element={<MarksUpload />} />
         <Route path="/queries" element={<Queries />} />
         <Route path="/fa-mode" element={<FAMode />} />
+        <Route path="/submission-status" element={<SubmissionStatus />} />
       </Routes>
     </AppLayout>
   );
