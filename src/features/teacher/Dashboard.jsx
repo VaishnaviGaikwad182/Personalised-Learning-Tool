@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
-import QuerySection from "../components/QuerySection";
+import QuerySection from "./QuerySection";
 
 const Dashboard = () => {
   const [filters, setFilters] = useState({
@@ -21,9 +20,8 @@ const Dashboard = () => {
   const allSelected = filters.department && filters.subject && filters.division && filters.year;
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex-1 flex flex-col overflow-y-auto p-6 space-y-6 bg-blue-100">
+    
+      <div className="flex-1 flex flex-col overflow-y-auto p-6 space-y-6 bg-gray-100">
 
         {/* Filter Form */}
         <div className="bg-white rounded-2xl p-6 shadow-md">
@@ -102,13 +100,12 @@ const Dashboard = () => {
         )}
 
         {/* Query Section */}
-        <div className="bg-white rounded-2xl p-6 shadow-md min-h-[400px]">
+        <div>
           <QuerySection />
         </div>
 
       </div>
 
-    </div>
   );
 };
 

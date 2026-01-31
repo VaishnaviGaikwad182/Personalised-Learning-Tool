@@ -1,23 +1,47 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import React from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 
-import Navbar from './components/Navbar';
-import RoleSelectionPage from './components/RoleSelectionPage';
-import LoginPage from './components/LoginPage';
-import SignUpPage from './components/SignUpPage';
-import ForgotPassword from './components/ForgotPassword';
-import TeacherSignUpPage from './components/TeacherSignUpPage';
+/* Common */
+import Navbar from "./components/Navbar";
 
-import Dashboard from './pages/Dashboard';
-import MarksUpload from './pages/MarksUpload';
-import Queries from './pages/Queries';
-import FAMode from './pages/FAMode';
-import SubmissionStatus from "./pages/SubmissionStatus";
+/* Pages */
+import RoleSelectionPage from "./pages/RoleSelectionPage";
 
+/* Auth */
+import LoginPage from "./features/auth/LoginPage";
+import SignUpPage from "./features/auth/SignUpPage";
+import TeacherSignUpPage from "./features/auth/TeacherSignUpPage";
+import ForgotPassword from "./features/auth/ForgotPassword";
 
+/* Layouts */
+import StudentLayout from "./layouts/StudentLayout";
+import TeacherLayout from "./layouts/TeacherLayout";
+
+/* Teacher Pages */
+import Dashboard from "./features/teacher/Dashboard";
+import FAMode from "./features/teacher/FAMode";
+import Queries from "./features/teacher/Queries";
+import SubmissionStatus from "./features/teacher/SubmissionStatus";
+import MarksUpload from "./features/teacher/MarksUpload";
+
+/* Navbar wrapper */
 const AppLayout = ({ children }) => {
   const location = useLocation();
-  const hideNavbarRoutes = ['/', '/login', '/signup', '/signup/teacher', '/forgot-password'];
+
+  const hideNavbarRoutes = [
+    "/",
+    "/login",
+    "/signup",
+    "/signup/teacher",
+    "/forgot-password",
+  ];
+
   const shouldHideNavbar = hideNavbarRoutes.includes(location.pathname);
 
   return (
@@ -32,19 +56,25 @@ const AppRoutes = () => {
   return (
     <AppLayout>
       <Routes>
-        {/* Pages without Navbar */}
+        {/* Auth */}
         <Route path="/" element={<RoleSelectionPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/signup/teacher" element={<TeacherSignUpPage />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
 
-        {/* Pages with Navbar */}
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/marks-upload" element={<MarksUpload />} />
-        <Route path="/queries" element={<Queries />} />
-        <Route path="/fa-mode" element={<FAMode />} />
-        <Route path="/submission-status" element={<SubmissionStatus />} />
+        {/* Teacher */}
+        <Route path="/teacher/*" element={<TeacherLayout />}>
+          <Route index element={<Navigate to="dashboard" replace />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="fa-mode" element={<FAMode />} />
+          <Route path="queries" element={<Queries />} />
+          <Route path="submission-status" element={<SubmissionStatus />} />
+          <Route path="marks-upload" element={<MarksUpload />} />
+        </Route>
+
+        {/* Student */}
+        <Route path="/student/*" element={<StudentLayout />} />
       </Routes>
     </AppLayout>
   );

@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
 
-const FAMode = () => {
+const Queries = () => {
   const [form, setForm] = useState({
     department: "",
     subject: "",
     div: "",
-    mode: "",
+    query: "",
   });
 
   const handleChange = (e) => {
@@ -16,16 +15,14 @@ const FAMode = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle submission (e.g., send to backend)
-    alert(`FA Mode set to "${form.mode}" successfully!`);
+    // Handle form submission (e.g., API call)
+    alert("Query submitted successfully!");
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex-1 p-8 overflow-y-auto bg-blue-100">
+      <div className="flex-1 p-8 overflow-y-auto bg-gray-100">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">🎯 Set FA Mode</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">📩 Submit Student Query Response</h2>
         </div>
 
         <form
@@ -34,7 +31,7 @@ const FAMode = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {/* Subject */}
+            {/* Subject textbox */}
             <input
               type="text"
               name="subject"
@@ -45,7 +42,7 @@ const FAMode = () => {
               required
             />
 
-            {/* Division */}
+            {/* Division textbox */}
             <input
               type="text"
               name="div"
@@ -56,7 +53,7 @@ const FAMode = () => {
               required
             />
 
-            {/* Department */}
+            {/* Department Dropdown */}
             <select
               name="department"
               value={form.department}
@@ -64,7 +61,7 @@ const FAMode = () => {
               className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
-                <option value="">Select Department</option>
+              <option value="">Select Department</option>
                 <option value="ENTC">Applied Science and Humanities</option>
                 <option value="CS">Computer Engineering</option>
                 <option value="CS">Computer Engineering (Regional)</option>
@@ -90,23 +87,33 @@ const FAMode = () => {
               <option value="BE">Final Year (BE)</option>
             </select>
             
-            {/* FA Mode Dropdown */}
-            <select
-              name="mode"
-              value={form.mode}
-              onChange={handleChange}
-              className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-              required
-            >
-              <option value="">Select FA Mode</option>
-              <option value="Online">Online Quiz</option>
-              <option value="Offline">Offline test</option>
-              <option value="Assignment">Assignment</option>
-              <option value="Assignment">Presentation</option>
-              <option value="Assignment">Poster</option>
-              <option value="Assignment">Other</option>
+            {/* Paper dropdown */}
+              <select
+                name="paper"
+                value={form.paper}
+                onChange={handleChange}
+                className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+                required
+              >
+                <option value="">Select Paper</option>
+                <option value="FA1">FA1</option>
+                <option value="FA2">FA2</option>
+                <option value="SA">SA</option>
+              </select>
+              
+          </div>
 
-            </select>
+          {/* Query Textarea */}
+          <div>
+            <textarea
+              name="query"
+              value={form.query}
+              onChange={handleChange}
+              placeholder="Type your query response here..."
+              rows="5"
+              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
+              required
+            ></textarea>
           </div>
 
           <div className="text-center">
@@ -114,13 +121,12 @@ const FAMode = () => {
               type="submit"
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
             >
-              Set FA Mode
+              Submit Query Response
             </button>
           </div>
         </form>
       </div>
-    </div>
   );
 };
 
-export default FAMode;
+export default Queries;

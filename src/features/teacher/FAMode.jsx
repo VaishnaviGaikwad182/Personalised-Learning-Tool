@@ -1,36 +1,28 @@
 import React, { useState } from "react";
-import Sidebar from '../components/Sidebar';
 
-const MarksUpload = () => {
+const FAMode = () => {
   const [form, setForm] = useState({
     department: "",
     subject: "",
-    paper: "",
     div: "",
-    year: "",
-    file: null,
+    mode: "",
   });
 
   const handleChange = (e) => {
-    const { name, value, files } = e.target;
-    setForm({
-      ...form,
-      [name]: files ? files[0] : value,
-    });
+    const { name, value } = e.target;
+    setForm({ ...form, [name]: value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle file and form submission here
-    alert("Marks uploaded successfully!");
+    // Handle submission (e.g., send to backend)
+    alert(`FA Mode set to "${form.mode}" successfully!`);
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex-1 p-8 overflow-y-auto bg-blue-100">
+      <div className="flex-1 p-8 overflow-y-auto bg-gray-100">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">📄 Upload Student Marks</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">🎯 Set FA Mode</h2>
         </div>
 
         <form
@@ -69,15 +61,15 @@ const MarksUpload = () => {
               className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
-              <option value="">Select Department</option>
-              <option value="ASH">Applied Science and Humanities</option>
-              <option value="CE">Computer Engineering</option>
-              <option value="CEREG">Computer Engineering (Regional)</option>
-              <option value="AI-ML">Computer Science & Engineering (AI-ML)</option>
-              <option value="IT">Information Technology Engineering</option>
-              <option value="ENTC">Electronics & Telecommunication Engineering</option>
-              <option value="ME">Mechanical Engineering</option>
-              <option value="CEV">Civil Engineering</option>
+                <option value="">Select Department</option>
+                <option value="ENTC">Applied Science and Humanities</option>
+                <option value="CS">Computer Engineering</option>
+                <option value="CS">Computer Engineering (Regional)</option>
+                <option value="CS">Computer Science & Engineering (AI-ML)</option>
+                <option value="IT">Information Technology Engineering</option>
+                <option value="ENTC">Electronics & Telecommunication Engineering</option>
+                <option value="ENTC">Mechanical Engineering</option>
+                <option value="ENTC">Civil Engineering</option>
             </select>
 
             {/* Year */}
@@ -94,35 +86,24 @@ const MarksUpload = () => {
               <option value="TE">Third Year (TE)</option>
               <option value="BE">Final Year (BE)</option>
             </select>
-
-            {/* Paper */}
+            
+            {/* FA Mode Dropdown */}
             <select
-              name="paper"
-              value={form.paper}
+              name="mode"
+              value={form.mode}
               onChange={handleChange}
               className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
               required
             >
-              <option value="">Select Paper</option>
-              <option value="FA1">FA1</option>
-              <option value="FA2">FA2</option>
-              <option value="SA">SA</option>
-            </select>
-          </div>
+              <option value="">Select FA Mode</option>
+              <option value="Online">Online Quiz</option>
+              <option value="Offline">Offline test</option>
+              <option value="Assignment">Assignment</option>
+              <option value="Assignment">Presentation</option>
+              <option value="Assignment">Poster</option>
+              <option value="Assignment">Other</option>
 
-          {/* File Upload */}
-          <div className="relative">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Select File (.csv or .xlsx)</label>
-            <label className="flex items-center justify-between w-full px-4 py-3 bg-blue-100 text-blue-900 rounded-lg border border-blue-300 cursor-pointer hover:bg-blue-200 transition">
-              <span>{form.file ? form.file.name : "Choose file"}</span>
-              <input
-                type="file"
-                name="file"
-                onChange={handleChange}
-                className="hidden"
-                required
-              />
-            </label>
+            </select>
           </div>
 
           <div className="text-center">
@@ -130,13 +111,12 @@ const MarksUpload = () => {
               type="submit"
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
             >
-              Upload Marks
+              Set FA Mode
             </button>
           </div>
         </form>
       </div>
-    </div>
   );
 };
 
-export default MarksUpload;
+export default FAMode;

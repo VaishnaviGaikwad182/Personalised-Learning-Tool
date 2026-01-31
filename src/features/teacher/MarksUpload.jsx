@@ -1,31 +1,33 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
 
-const Queries = () => {
+const MarksUpload = () => {
   const [form, setForm] = useState({
     department: "",
     subject: "",
+    paper: "",
     div: "",
-    query: "",
+    year: "",
+    file: null,
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setForm({ ...form, [name]: value });
+    const { name, value, files } = e.target;
+    setForm({
+      ...form,
+      [name]: files ? files[0] : value,
+    });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission (e.g., API call)
-    alert("Query submitted successfully!");
+    // Handle file and form submission here
+    alert("Marks uploaded successfully!");
   };
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex-1 p-8 overflow-y-auto bg-blue-100">
+      <div className="flex-1 p-8 overflow-y-auto bg-gray-100">
         <div className="text-center">
-          <h2 className="text-3xl font-bold text-gray-800 mb-6">📩 Submit Student Query Response</h2>
+          <h2 className="text-3xl font-bold text-gray-800 mb-6">📄 Upload Student Marks</h2>
         </div>
 
         <form
@@ -34,7 +36,7 @@ const Queries = () => {
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-            {/* Subject textbox */}
+            {/* Subject */}
             <input
               type="text"
               name="subject"
@@ -45,7 +47,7 @@ const Queries = () => {
               required
             />
 
-            {/* Division textbox */}
+            {/* Division */}
             <input
               type="text"
               name="div"
@@ -56,7 +58,7 @@ const Queries = () => {
               required
             />
 
-            {/* Department Dropdown */}
+            {/* Department */}
             <select
               name="department"
               value={form.department}
@@ -65,14 +67,14 @@ const Queries = () => {
               required
             >
               <option value="">Select Department</option>
-                <option value="ENTC">Applied Science and Humanities</option>
-                <option value="CS">Computer Engineering</option>
-                <option value="CS">Computer Engineering (Regional)</option>
-                <option value="CS">Computer Science & Engineering (AI-ML)</option>
-                <option value="IT">Information Technology Engineering</option>
-                <option value="ENTC">Electronics & Telecommunication Engineering</option>
-                <option value="ENTC">Mechanical Engineering</option>
-                <option value="ENTC">Civil Engineering</option>
+              <option value="ASH">Applied Science and Humanities</option>
+              <option value="CE">Computer Engineering</option>
+              <option value="CEREG">Computer Engineering (Regional)</option>
+              <option value="AI-ML">Computer Science & Engineering (AI-ML)</option>
+              <option value="IT">Information Technology Engineering</option>
+              <option value="ENTC">Electronics & Telecommunication Engineering</option>
+              <option value="ME">Mechanical Engineering</option>
+              <option value="CEV">Civil Engineering</option>
             </select>
 
             {/* Year */}
@@ -89,34 +91,35 @@ const Queries = () => {
               <option value="TE">Third Year (TE)</option>
               <option value="BE">Final Year (BE)</option>
             </select>
-            
-            {/* Paper dropdown */}
-              <select
-                name="paper"
-                value={form.paper}
-                onChange={handleChange}
-                className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
-                required
-              >
-                <option value="">Select Paper</option>
-                <option value="FA1">FA1</option>
-                <option value="FA2">FA2</option>
-                <option value="SA">SA</option>
-              </select>
-              
+
+            {/* Paper */}
+            <select
+              name="paper"
+              value={form.paper}
+              onChange={handleChange}
+              className="p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400"
+              required
+            >
+              <option value="">Select Paper</option>
+              <option value="FA1">FA1</option>
+              <option value="FA2">FA2</option>
+              <option value="SA">SA</option>
+            </select>
           </div>
 
-          {/* Query Textarea */}
-          <div>
-            <textarea
-              name="query"
-              value={form.query}
-              onChange={handleChange}
-              placeholder="Type your query response here..."
-              rows="5"
-              className="w-full p-3 bg-gray-100 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400 resize-none"
-              required
-            ></textarea>
+          {/* File Upload */}
+          <div className="relative">
+            <label className="block text-sm font-medium text-gray-700 mb-1">Select File (.csv or .xlsx)</label>
+            <label className="flex items-center justify-between w-full px-4 py-3 bg-blue-100 text-blue-900 rounded-lg border border-blue-300 cursor-pointer hover:bg-blue-200 transition">
+              <span>{form.file ? form.file.name : "Choose file"}</span>
+              <input
+                type="file"
+                name="file"
+                onChange={handleChange}
+                className="hidden"
+                required
+              />
+            </label>
           </div>
 
           <div className="text-center">
@@ -124,13 +127,12 @@ const Queries = () => {
               type="submit"
               className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition"
             >
-              Submit Query Response
+              Upload Marks
             </button>
           </div>
         </form>
       </div>
-    </div>
   );
 };
 
-export default Queries;
+export default MarksUpload;

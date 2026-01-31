@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import Sidebar from "../components/Sidebar";
 
 const SubmissionStatus = () => {
   const [filters, setFilters] = useState({
@@ -23,9 +22,7 @@ const SubmissionStatus = () => {
   const allSelected = Object.values(filters).every(val => val !== "");
 
   return (
-    <div className="flex h-screen bg-gray-100">
-      <Sidebar />
-      <div className="flex-1 p-8 overflow-y-auto bg-blue-100">
+      <div className="flex-1 p-8 overflow-y-auto bg-gray-100">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold text-gray-800">📋 Check Student Submissions</h2>
         </div>
@@ -129,7 +126,6 @@ const SubmissionStatus = () => {
           </div>
         )}
       </div>
-    </div>
   );
 };
 
